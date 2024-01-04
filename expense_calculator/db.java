@@ -11,4 +11,18 @@ public class db {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
+    public static ResultSet getIncomeExpenseData() {
+        String query = "SELECT * FROM expenses ORDER BY date DESC, id DESC";
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            con = getConnection();
+            stmt = con.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error fetching data: " + e.getMessage());
+        }
+        return null;
+    }
 }
