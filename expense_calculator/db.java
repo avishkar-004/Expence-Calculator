@@ -25,4 +25,18 @@ public class db {
         }
         return null;
     }
+
+    public static void insertExpense(String type, String description, String amount, String category) {
+        String query = "INSERT INTO expenses (Type, Description, Amount, date, Category) "
+                + "VALUES (?, ?, ?, (SELECT CURRENT_DATE()), ?)";
+        try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, type);
+            pstmt.setString(2, description);
+            pstmt.setString(3, amount);
+            pstmt.setString(4, category);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error inserting data: " + e.getMessage());
+        }
+    }
 }
