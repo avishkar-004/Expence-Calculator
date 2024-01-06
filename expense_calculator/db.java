@@ -39,4 +39,17 @@ public class db {
             System.out.println("Error inserting data: " + e.getMessage());
         }
     }
+
+    public static int getTotalExpenses() {
+        String query = "SELECT SUM(Amount) FROM expenses WHERE type = 'Expense'";
+        try (Connection con = getConnection(); Statement stmt = con.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching total expenses: " + e.getMessage());
+        }
+        return 0;
+    }
 }
