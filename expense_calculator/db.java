@@ -44,11 +44,20 @@ public class db {
         String query = "SELECT SUM(Amount) FROM expenses WHERE type = 'Expense'";
         try (Connection con = getConnection(); Statement stmt = con.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            if (rs.next()) {
-                return rs.getInt(1);
-            }
+            if (rs.next()) return rs.getInt(1);
         } catch (SQLException e) {
             System.out.println("Error fetching total expenses: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public static int getTotalIncome() {
+        String query = "SELECT SUM(Amount) FROM expenses WHERE type = 'Income'";
+        try (Connection con = getConnection(); Statement stmt = con.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Error fetching total income: " + e.getMessage());
         }
         return 0;
     }
