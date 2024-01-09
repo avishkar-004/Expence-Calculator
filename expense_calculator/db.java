@@ -61,4 +61,36 @@ public class db {
         }
         return 0;
     }
+
+    public static void deleteExpense(int id) {
+        String query = "DELETE FROM expenses WHERE id = ?";
+        try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error deleting record: " + e.getMessage());
+        }
+    }
+
+    public static ResultSet getAnalyticData() {
+        Connection con = null;
+        Statement stmt = null;
+        String query = """
+            SELECT DATE_FORMAT(date, '%Y-%m') AS Month,
+                   SUM(CASE WHEN Type = 'income' THEN Amount ELSE 0 END) AS Income,
+                   SUM(CASE WHEN Type = 'expense' THEN Amount ELSE 0 END) AS Expense
+            FROM expenses
+            WHERE date >= CURDATE() - INTERVAL 6 MONTH
+            GROUP BY Month
+            ORDER BY Month DESC;
+        """;
+        try {
+            con = getConnection();
+            stmt = con.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error fetching data: " + e.getMessage());
+        }
+        return null;
+    }
 }
