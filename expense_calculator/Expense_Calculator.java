@@ -7,69 +7,93 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author Avishkar
+ */
 public class Expense_Calculator extends javax.swing.JFrame {
 
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton jButton1, jButton2, jButton3, jButton4, jButton5, jButton6;
+    private javax.swing.JComboBox<String> jComboBox1, jComboBox2;
+    private javax.swing.JFrame jFrame1, jFrame2;
+    private javax.swing.JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6;
+    private javax.swing.JLabel jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12;
+    private javax.swing.JLabel jLabel13, jLabel14, jLabel15, jLabel16, jLabel17, jLabel18;
+    private javax.swing.JLabel jLabel20, jLabel21;
+    private javax.swing.JPanel jPanel1, jPanel2, jPanel3, jPanel4, jPanel6, jPanel7, jPanel8, jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField1, jTextField2, jTextField3;
 
     public Expense_Calculator() {
+        System.out.println("callong constroctor expense_calculator.Expense_Calculator.<init>()");
         initComponents();
         insertintable();
     }
 
     private void initComponents() {
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Expense Calculator");
+        
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18));
+        jLabel1.setText("Expense Calculator");
+        
+        jLabel5.setText("Expense");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("0");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        jLabel7.setText("Income");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("0");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        jLabel9.setText("Total");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("0");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        pack();
     }
 
     private void insertintable() {
-        // TODO: populate table
+        // populate table from database
     }
 
     public static void main(String args[]) {
+        System.out.println("expense_calculator.Expense_Calculator.main()");
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Expense_Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                System.out.println(".run()");
                 new Expense_Calculator().setVisible(true);
             }
         });
