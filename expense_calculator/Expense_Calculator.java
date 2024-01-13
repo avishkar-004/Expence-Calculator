@@ -99,3 +99,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
         });
     }
 }
+// Action button handlers will be added here
