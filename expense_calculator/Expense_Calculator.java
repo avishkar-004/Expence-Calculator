@@ -31,52 +31,77 @@ public class Expense_Calculator extends javax.swing.JFrame {
     }
 
     private void initComponents() {
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18));
-        jLabel1.setText("Expense Calculator");
-        
-        jLabel5.setText("Expense");
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("0");
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
-        jLabel7.setText("Income");
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("0");
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
-        jLabel9.setText("Total");
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("0");
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
+        jTable1.setRowHeight(30);
+        jTable1.setRowMargin(5);
+        jTable1.setShowGrid(true);
+        jScrollPane2.setViewportView(jTable1);
         pack();
     }
 
     private void insertintable() {
-        // populate table from database
+        try {
+            ResultSet rs = db.getIncomeExpenseData();
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{"Id", "Date", "Type", "Description", "category", "Amount"}
+            ) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            });
+
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(100);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getInt(1), rs.getString(5), rs.getString(2), rs.getString(3), rs.getString(6), "\u20B9" + rs.getInt(4)});
+            }
+
+            int expenses = db.getTotalExpenses();
+            jLabel6.setText("\u20B9" + expenses);
+            int income = db.getTotalIncome();
+            jLabel8.setText("\u20B9" + income);
+            jLabel10.setText("\u20B9" + (income - expenses));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        ColourRows();
+    }
+
+    void ColourRows() {
+        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if ("Expense".equals(table.getValueAt(row, 2))) {
+                    c.setBackground(new Color(255, 150, 150));
+                } else {
+                    c.setBackground(new Color(170, 255, 0));
+                }
+                if (isSelected) {
+                    c.setBackground(table.getSelectionBackground());
+                    c.setForeground(table.getSelectionForeground());
+                } else {
+                    c.setForeground(Color.BLACK);
+                }
+                return c;
+            }
+        });
     }
 
     public static void main(String args[]) {
@@ -99,4 +124,3 @@ public class Expense_Calculator extends javax.swing.JFrame {
         });
     }
 }
-// Action button handlers will be added here
