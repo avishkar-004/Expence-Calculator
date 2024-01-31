@@ -138,3 +138,4 @@ public class graph extends javax.swing.JFrame {
     }
 }
 // Row margin set to 5 for readability
+// Panel border set to navy blue
