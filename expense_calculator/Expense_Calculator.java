@@ -359,3 +359,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1, jTextField2, jTextField3;
 }
+// Full UI layout managed by NetBeans form editor
