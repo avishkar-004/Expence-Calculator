@@ -361,3 +361,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 }
 // Full UI layout managed by NetBeans form editor
 // Add transaction button handler opens dialog frame
+// Delete confirmation shows selected transaction details
