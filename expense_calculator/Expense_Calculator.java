@@ -363,3 +363,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 // Add transaction button handler opens dialog frame
 // Delete confirmation shows selected transaction details
 // Analytics button launches graph window
+// Cancel button hides delete dialog
