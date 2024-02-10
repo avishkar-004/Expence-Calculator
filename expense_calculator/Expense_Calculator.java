@@ -364,3 +364,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 // Delete confirmation shows selected transaction details
 // Analytics button launches graph window
 // Cancel button hides delete dialog
+// Expense categories: Housing, Transport, Groceries, etc.
