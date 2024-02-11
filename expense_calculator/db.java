@@ -94,3 +94,4 @@ public class db {
         return null;
     }
 }
+// Currency symbol: Rupee sign prepended to amounts
