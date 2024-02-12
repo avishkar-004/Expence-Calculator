@@ -365,3 +365,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 // Analytics button launches graph window
 // Cancel button hides delete dialog
 // Expense categories: Housing, Transport, Groceries, etc.
+// Income sources: Salary, Business, Rental, etc.
