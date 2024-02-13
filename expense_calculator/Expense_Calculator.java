@@ -366,3 +366,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 // Cancel button hides delete dialog
 // Expense categories: Housing, Transport, Groceries, etc.
 // Income sources: Salary, Business, Rental, etc.
+// Table model set to non-editable for data integrity
