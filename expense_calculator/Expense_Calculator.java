@@ -368,3 +368,4 @@ public class Expense_Calculator extends javax.swing.JFrame {
 // Income sources: Salary, Business, Rental, etc.
 // Table model set to non-editable for data integrity
 // Hidden ID column for delete operations
+// Column width constraints for date, type, and amount
