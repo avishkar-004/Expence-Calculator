@@ -95,3 +95,4 @@ public class db {
     }
 }
 // Currency symbol: Rupee sign prepended to amounts
+// Date formatting: YYYY-MM for monthly aggregation
