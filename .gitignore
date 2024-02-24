@@ -11,3 +11,4 @@ build/
 .vscode/
 nbproject/private/
 out/
+screenshots/*.png
